@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff69b4; /* Pink color */
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .img1 {
+            float: right;
+            margin-left: 20px;
+            width: 200px; /* Adjust image width as needed */
+        }
+        .img2 {
+            float: left;
+            margin-right: 20px;
+            width: 200px; /* Adjust image width as needed */
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .create-new-blog-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .create-new-blog-btn button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff69b4; /* Pink color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .create-new-blog-btn button:hover {
+            background-color: #e0569e; /* Lighter pink color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+
+        <!-- Display first image -->
+        <img src="{{ url_for('static', filename='img1.jpg') }}" alt="Image 1" class="img1">
+
+        <!-- Display blog post paragraphs -->
+        {% for paragraph in blog_post.split('\n') %}
+            <p>{{ paragraph }}</p>
+        {% endfor %}
+
+        <!-- Display second image -->
+        <img src="{{ url_for('static', filename='img2.jpg') }}" alt="Image 2" class="img2">
+
+        <!-- "Create New Blog" button -->
+        <div class="create-new-blog-btn">
+            <form action="/create_new_blog" method="post">
+                <button type="submit">Create New Blog</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
